@@ -18,7 +18,7 @@ header{background:linear-gradient(125deg,#0e7490,#155e75);color:#fff;padding:18p
 function make(tag,cl,txt){const n=document.createElement(tag);if(cl)n.className=cl;if(txt!==undefined)n.textContent=txt;return n}
 items.forEach((d)=>{const detail=make('details','topic');detail.dataset.kind=d[0];detail.dataset.text=d.join(' ').toLowerCase();const sum=make('summary');sum.append(make('span','tag',d[0]),make('span','',d[1]));detail.append(sum);const body=make('div','answer',d[2]);body.append(make('div','memo','速记：'+d[3]),make('div','source','来源：'+d[4]));detail.append(body);main.append(detail)});
 function filter(){const word=search.value.trim().toLowerCase();let n=0;document.querySelectorAll('.topic').forEach(el=>{let hit=(kind==='全部'||el.dataset.kind===kind)&&el.dataset.text.includes(word);el.hidden=!hit;if(hit)n++});count.textContent='显示 '+n+' / '+items.length+' 个考点'}
-search.addEventListener('input',filter);document.querySelectorAll('[data-kind]').forEach(b=>b.addEventListener('click',()=>{kind=b.dataset.kind;document.querySelectorAll('button[data-kind]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));filter()}));
+search.addEventListener('input',filter);document.querySelectorAll('button[data-kind]').forEach(b=>b.addEventListener('click',()=>{kind=b.dataset.kind;document.querySelectorAll('button[data-kind]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));filter()}));
 document.getElementById('expand').addEventListener('click',()=>document.querySelectorAll('.topic:not([hidden])').forEach(x=>x.open=true));document.getElementById('collapse').addEventListener('click',()=>document.querySelectorAll('.topic').forEach(x=>x.open=false));filter();
 })();
 </script></body></html>
