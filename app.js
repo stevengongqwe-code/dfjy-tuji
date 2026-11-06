@@ -7,6 +7,7 @@ var TABS = [
   {id:"nouns",   icon:"▤", name:"名词"},
   {id:"shorts",  icon:"☰", name:"简答"},
   {id:"essays",  icon:"✎", name:"论述"},
+  {id:"recall",  icon:"🎯", name:"抽背"},
   {id:"quiz",    icon:"✓", name:"刷题"},
   {id:"calc",    icon:"∑", name:"计算"},
   {id:"paper",   icon:"▦", name:"卷子"},
@@ -56,6 +57,7 @@ function go(id){
 function render(){
   var m = el("main");
   if(TAB === "quiz"){ renderQuiz(); return; }
+  if(TAB === "recall"){ window.Recall.render(m, D); return; }
   var html = "";
   if(TAB === "outline") html = vOutline();
   else if(TAB === "nouns") html = vNouns();
@@ -78,11 +80,12 @@ function vOutline(){
     if(blk.note) h += '<div class="tip" style="margin-top:9px;color:var(--main)">💡 ' + blk.note + '</div>';
     h += '</div>';
   });
-  h += '<div class="sec-t">八个页签怎么用</div><div class="card"><div class="tip" style="line-height:2">' +
+  h += '<div class="sec-t">九个页签怎么用</div><div class="card"><div class="tip" style="line-height:2">' +
        '<b>提纲</b>——先看这个，知道考什么<br>' +
        '<b>名词</b>——58 个，点开背，可标记已掌握<br>' +
        '<b>简答</b>——50 道，背小标题<br>' +
        '<b>论述</b>——老师给的 8 道论述题完整答案＋3 道思考题<br>' +
+       '<b>抽背</b>——8 道论述题随机抽背，隐藏答案、薄弱题重练<br>' +
        '<b>刷题</b>——104 题，即时判分<br>' +
        '<b>计算</b>——TCID50／中和效价／中和指数四道例题<br>' +
        '<b>卷子</b>——整套模拟卷，闭卷做<br>' +
